@@ -1,3 +1,5 @@
+var thesaurus = require("thesaurus")
+
 let synonyms = document.getElementById("synonyms")
 let input = document.getElementById("input")
 const search = document.getElementById("search")
@@ -15,18 +17,17 @@ search.addEventListener("click", function() {
         `
     }
     else {
-        str = `
-            <ul>
-                <li>testing 1</li>
-                <li>testing 2</li>
-                <li>testing 3</li>
-            </ul>
-        `
+        var list = thesaurus.find(word)
+        str += `<ul>`
+        for (i in list) {
+            str += `<li>${list[i]}</li>`
+        }
+        str += `</ul>`
     }
 
     synonyms.innerHTML = str
 })
 
 function isAlpha(str) {
-    return /^[a-zA-Z]+$/.test(str)
+    return /^[a-zA-Z ]+$/.test(str)
 }
