@@ -1,0 +1,10 @@
+{
+  "name": "thesaurus",
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "description": "A thesaurus to find a synonym quickly",
+  "author": "Jacob Ko",
+  "action":{
+    "default_popup": "index.html"
+  }
+}
