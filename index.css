@@ -20,10 +20,20 @@ body {
 
 .bottom-container {
     margin: 0px 20px;
-    background-color: #FCBF49;
+    padding: 10px;
+    background-color: #e9c46a;
     color: #003049;
     border: 0px;
     border-radius: 10px;
+    gap: 4px;
+    display: flex;
+}
+
+.col {
+    background-color: #f4a261;
+    border: 4px solid #e76f51;
+    border-radius: 10px;
+    flex: 1;
 }
 
 ul {

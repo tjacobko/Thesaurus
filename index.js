@@ -10,21 +10,39 @@ search.addEventListener("click", function() {
 
     if (!isAlpha(word)) {
         str = `
-            <div class="error">
-                <h3>'${word}' is not a valid input.</h3>
-                <p>Please enter a word.</p>
+            <div class="bottom-container">
+                <div class="error">
+                    <h3>'${word}' is not a valid input.</h3>
+                    <p>Please enter a word.</p>
+                </div>
             </div>
         `
     }
-    else {
+    else {        
         var list = thesaurus.find(word)
-        str += `<ul>`
-        for (i in list) {
-            str += `<li>${list[i]}</li>`
+        if (list.length === 0) {
+            str += `
+                <div class="bottom-container">
+                    <div class="error">
+                        <h3>No synonyms found.</h3>
+                    </div>
+                </div>
+            `
         }
-        str += `</ul>`
+        else {
+            str += `<div class="bottom-container">`
+            for (let i=0; i < list.length; i++) {
+                if ((i+1)%5===1) {
+                    str += `<div class="col"><ul>`
+                }
+                str += `<li>${list[i]}</li>`
+                if ((i+1)%5===0 || i===list.length-1) {
+                    str += `</ul></div>`
+                }
+            }
+            str += `</div>`
+        }
     }
-
     synonyms.innerHTML = str
 })
 
