@@ -9,17 +9,33 @@ search.addEventListener("click", function() {
     let word = input.value
 
     if (!isAlpha(word)) {
-        str = `
-            <div class="bottom-container">
-                <div class="error">
-                    <h3>'${word}' is not a valid input.</h3>
-                    <p>Please enter a word.</p>
+        if (word === "") {
+            str = `
+                <div class="bottom-container">
+                    <div class="error">
+                        <h3>Input is empty.</h3>
+                        <p>Please enter a word.</p>
+                    </div>
                 </div>
-            </div>
-        `
+            `
+        }
+        else {
+            str = `
+                <div class="bottom-container">
+                    <div class="error">
+                        <h3>'${word}' is not a valid input.</h3>
+                        <p>Please enter a word.</p>
+                    </div>
+                </div>
+            `
+        }
     }
     else {        
         var list = thesaurus.find(word)
+        if (list.length > 20) {
+            list.length = 20
+        }
+
         if (list.length === 0) {
             str += `
                 <div class="bottom-container">
