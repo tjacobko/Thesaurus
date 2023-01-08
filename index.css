@@ -44,6 +44,13 @@ ul li {
     margin: 5px;
 }
 
+.li-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-size: 20px;
+}
+
 .error {
     margin: 0;
     padding: 10px 0px 10px 10px;

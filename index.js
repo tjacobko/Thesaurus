@@ -4,6 +4,17 @@ let synonyms = document.getElementById("synonyms")
 let input = document.getElementById("input")
 const search = document.getElementById("search")
 
+let copy = function() {
+    var r = document.createRange();
+    r.selectNode(document.getElementById(this.id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+
+    alert("Copied to clipboard.")
+}
+
 search.addEventListener("click", function() {
     let str = ""
     let word = input.value
@@ -51,7 +62,13 @@ search.addEventListener("click", function() {
                 if ((i+1)%5===1) {
                     str += `<div class="col"><ul>`
                 }
-                str += `<li>${list[i]}</li>`
+                str += `
+                    <li>
+                        <button class="li-button" id="li${i}">
+                            ${list[i]}
+                        </button>
+                    </li>
+                `
                 if ((i+1)%5===0 || i===list.length-1) {
                     str += `</ul></div>`
                 }
@@ -60,6 +77,12 @@ search.addEventListener("click", function() {
         }
     }
     synonyms.innerHTML = str
+
+    let buttons = document.getElementsByClassName("li-button")
+
+    for (var i=0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", copy, false)
+    }
 })
 
 // EventListener allows user to use 'Enter' to input word
